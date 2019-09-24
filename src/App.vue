@@ -1,17 +1,33 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <message
+      default-message="Default"
+      @add:message="addMessage"
+    />
+    <list :items="messages" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import message from './components/message.vue';
+import list from './components/list.vue';
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    HelloWorld,
+    message,
+    list,
+  },
+  data() {
+    return {
+      messages: [],
+    };
+  },
+
+  methods: {
+    addMessage(payload) {
+      this.messages.push(payload);
+    },
   },
 };
 </script>
